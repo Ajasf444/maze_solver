@@ -1,12 +1,13 @@
-from tkinter import Tk, BOTH, Canvas
+from tkinter import BOTH, Canvas, Tk
 
 
 class Window:
     def __init__(self, width, height):
         self.__root = Tk()
-        self.__root.title("Tahm Kench")
-        self.canvas = Canvas()
-        self.canvas.pack()
+        self.__root.title("Maze Solver")
+        self.canvas = Canvas(self.__root, bg="white",
+                             height=height, width=width)
+        self.canvas.pack(fill=BOTH, expand=1)
         self.is_running = False
         self.__root.protocol("WM_DELETE_WINDOW", self.close)
 
