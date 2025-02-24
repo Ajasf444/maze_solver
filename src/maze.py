@@ -9,10 +9,10 @@ class Maze:
     SLEEP_TIME = 0.05
 
     def __init__(
-        self, x1, y1, num_rows, num_cols, cell_size_x, cell_size_y, win: Window
+        self, point: Point, num_rows, num_cols, cell_size_x, cell_size_y, win: Window
     ):
-        self.x1 = x1
-        self.y1 = y1
+        self.x1 = point.x
+        self.y1 = point.y
         self.num_rows = num_rows
         self.num_cols = num_cols
         self.cell_size_x = cell_size_x
