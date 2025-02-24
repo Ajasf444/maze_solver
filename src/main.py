@@ -20,8 +20,8 @@ def main():
     cellB.draw()
     cellA.draw_move(cellB)
 
+    maze = Maze(pA, 5, 5, 50, 50, win)
     win.wait_for_close()
-    maze = Maze()
 
 
 if __name__ == "__main__":
