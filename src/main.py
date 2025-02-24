@@ -1,4 +1,5 @@
 from cell import Cell
+from maze import Maze
 from geometry import Line, Point
 from window import Window
 
@@ -20,6 +21,7 @@ def main():
     cellA.draw_move(cellB)
 
     win.wait_for_close()
+    maze = Maze()
 
 
 if __name__ == "__main__":
