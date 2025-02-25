@@ -56,3 +56,7 @@ class Maze:
             return
         self._win.redraw()
         time.sleep(Maze.SLEEP_TIME)
+
+    def _break_entrance_and_exit(self):
+        # TODO: remove lines at entrance and exit
+        pass
