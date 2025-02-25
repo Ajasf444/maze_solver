@@ -9,7 +9,13 @@ class Maze:
     SLEEP_TIME = 0.05
 
     def __init__(
-        self, point: Point, num_rows, num_cols, cell_size_x, cell_size_y, win: Window
+        self,
+        point: Point,
+        num_rows,
+        num_cols,
+        cell_size_x,
+        cell_size_y,
+        win: Window = None,
     ):
         self.x1 = point.x
         self.y1 = point.y
@@ -35,6 +41,8 @@ class Maze:
                 self._cells[col].append(
                     Cell(top_left_point, bottom_right_point, self._win)
                 )
+        if not self._win:
+            return
         for j in range(self.num_cols):
             for i in range(self.num_rows):
                 self._draw_cell(i, j)
@@ -44,5 +52,7 @@ class Maze:
         self._cells[column][row].draw()
 
     def _animate(self):
+        if not self._win:
+            return
         self._win.redraw()
         time.sleep(Maze.SLEEP_TIME)
