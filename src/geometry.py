@@ -15,4 +15,4 @@ class Line:
     def draw(self, canvas: Canvas, fill_color):
         x1, y1 = self.start.x, self.start.y
         x2, y2 = self.end.x, self.end.y
-        canvas.create_line(x1, y1, x2, y2, fill=fill_color, width=2)
+        return canvas.create_line(x1, y1, x2, y2, fill=fill_color, width=2)
