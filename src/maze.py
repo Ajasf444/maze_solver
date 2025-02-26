@@ -61,5 +61,5 @@ class Maze:
         # TODO: remove lines at entrance and exit
         self._cells[0][0].has_top_wall = False
         self._draw_cell(0, 0)
-        self._cells[self.num_cols][-1].has_bottom_wall = False
-        self._draw_cell(-1, self.num_cols)
+        self._cells[-1][-1].has_bottom_wall = False
+        self._draw_cell(-1, -1)
