@@ -24,6 +24,7 @@ class Cell:
         self.wall_color = wall_color
 
     def draw(self):
+        # TODO: change color to black if has_wall, else make color white and still draw wall
         if not self._window:
             return
         if self.has_right_wall:
