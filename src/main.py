@@ -21,6 +21,7 @@ def main():
     cellA.draw_move(cellB)
 
     maze = Maze(pA, 5, 5, 50, 50, win)
+    maze._break_entrance_and_exit()
     win.wait_for_close()
 
 
