@@ -1,4 +1,5 @@
 import time
+import random
 
 from cell import Cell
 from geometry import Point
@@ -16,6 +17,7 @@ class Maze:
         cell_size_x,
         cell_size_y,
         win: Window = None,
+        seed=None,
     ):
         self.x1 = point.x
         self.y1 = point.y
@@ -25,6 +27,7 @@ class Maze:
         self.cell_size_y = cell_size_y
         self._win = win
         self._cells = []
+        self._seed = seed
         self._create_cells()
 
     def _create_cells(self):
