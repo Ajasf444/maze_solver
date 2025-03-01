@@ -24,6 +24,7 @@ class Cell:
         self._window = window
         self.wall_color = wall_color
         self.no_wall_color = no_wall_color
+        self.visited = False
 
     def draw(self):
         if not self._window:
@@ -31,8 +32,7 @@ class Cell:
         right_wall = Line(Point(self._x2, self._y2), Point(self._x2, self._y1))
         top_wall = Line(Point(self._x2, self._y1), Point(self._x1, self._y1))
         left_wall = Line(Point(self._x1, self._y1), Point(self._x1, self._y2))
-        bottom_wall = Line(Point(self._x1, self._y2),
-                           Point(self._x2, self._y2))
+        bottom_wall = Line(Point(self._x1, self._y2), Point(self._x2, self._y2))
         walls = [
             (right_wall, self.has_right_wall),
             (top_wall, self.has_top_wall),
