@@ -65,3 +65,6 @@ class Maze:
         self._draw_cell(0, 0)
         self._cells[-1][-1].has_bottom_wall = False
         self._draw_cell(-1, -1)
+
+    def _break_wall_r(self, i, j):
+        pass
