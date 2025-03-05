@@ -69,4 +69,4 @@ class Maze:
     def _break_wall_r(self, i, j):
         self._cells[j][i].visited = True
         while True:
-            pass
+            visited_cells = []
