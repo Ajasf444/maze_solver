@@ -71,3 +71,6 @@ class Maze:
         while True:
             visited_cells = []
             # TODO: get adjacent cells to the current cell
+
+    def cell_in_maze_bounds(self, i, j):
+        return i >= 0 and i < self.num_rows and j >= 0 and j < self.num_cols
