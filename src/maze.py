@@ -70,3 +70,4 @@ class Maze:
         self._cells[j][i].visited = True
         while True:
             visited_cells = []
+            # TODO: get adjacent cells to the current cell
