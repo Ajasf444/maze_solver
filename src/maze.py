@@ -71,6 +71,9 @@ class Maze:
         while True:
             visited_cells = []
             # TODO: get adjacent cells to the current cell
+            # neighboring cells ordered right, top, left, bottom
+            adjacent_cells = [(i, j + 1), (i - 1, j), (i, j - 1), (i + 1, j)]
+            adjacent_cells = filter(Maze.cell_in_maze_bounds, adjacent_cells)
 
     def cell_in_maze_bounds(self, indices):
         i, j = indices
