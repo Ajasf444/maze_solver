@@ -77,6 +77,8 @@ class Maze:
             possible_to_visit_cells = [
                 cell for cell in adjacent_cells if not cell.visited
             ]
+            if not possible_to_visit_cells:
+                self._cells[j][i].draw()
 
     def cell_in_maze_bounds(self, indices):
         i, j = indices
