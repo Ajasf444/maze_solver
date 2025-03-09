@@ -79,6 +79,10 @@ class Maze:
             ]
             if not possible_to_visit_cells:
                 self._cells[j][i].draw()
+                return
+            else:
+                # TODO: pick random direction
+                pass
 
     def cell_in_maze_bounds(self, indices):
         i, j = indices
