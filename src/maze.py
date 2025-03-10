@@ -71,7 +71,6 @@ class Maze:
         self._cells[j][i].visited = True
         directions = Directions(i, j)
         while True:
-            visited_cells = []
             # neighboring cells ordered right, top, left, bottom
             adjacent_cells = [(i, j + 1), (i - 1, j), (i, j - 1), (i + 1, j)]
             adjacent_cells = filter(Maze.cell_in_maze_bounds, adjacent_cells)
@@ -83,16 +82,17 @@ class Maze:
                 return
             else:
                 chosen_direction = random.choice(possible_to_visit_cells)
-                # TODO: knock down walls and replace cases with Enum values
                 match chosen_direction:
                     case directions.RIGHT:
-                        pass
+                        self._cells[j][i].has_right_wall = False
                     case directions.UP:
-                        pass
+                        self._cells[j][i].has_top_wall = False
                     case directions.LEFT:
-                        pass
+                        self._cells[j][i].has_left_wall = False
                     case directions.DOWN:
-                        pass
+                        self._cells[j][i].has_bottom_wall = False
+                next_i, next_j = chosen_direction
+                self._break_wall_r(next_i, next_j)
 
     def cell_in_maze_bounds(self, indices):
         i, j = indices
