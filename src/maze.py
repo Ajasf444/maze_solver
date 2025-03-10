@@ -1,5 +1,5 @@
-import time
 import random
+import time
 
 from cell import Cell
 from directions import Directions
@@ -72,13 +72,8 @@ class Maze:
         directions = Directions(i, j)
         while True:
             # neighboring cells ordered right, top, left, bottom
-            adjacent_cells = [(i, j + 1), (i - 1, j), (i, j - 1), (i + 1, j)]
-            adjacent_cells = filter(self._cell_in_maze_bounds, adjacent_cells)
-            possible_to_visit_cells = [
-                cell
-                for cell in adjacent_cells
-                if not self._cells[cell[1]][cell[0]].visited
-            ]
+            possible_to_visit_cells = self._get_visitable_cells(i, j)
+
             if not possible_to_visit_cells:
                 self._draw_cell(i, j)
                 return
@@ -113,4 +108,12 @@ class Maze:
         self._cells[j][i].visited = True
         if self._cells[-1][-1].visited is True:
             return True
-        # TODO: iterate in each direction
+        neighboring_cells = self._get_neighboring_cells(i, j)
+
+    def _get_neighboring_cells(self, i, j):
+        adjacent_cells = [(i, j + 1), (i - 1, j), (i, j - 1), (i + 1, j)]
+        return filter(self._cell_in_maze_bounds, adjacent_cells)
+
+    def _get_visitable_cells(self, i, j):
+        cells = self._get_neighboring_cells(i, j)
+        return [cell for cell in cells if not self._cells[cell[1]][cell[0]].visited]
