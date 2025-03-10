@@ -73,12 +73,15 @@ class Maze:
         while True:
             # neighboring cells ordered right, top, left, bottom
             adjacent_cells = [(i, j + 1), (i - 1, j), (i, j - 1), (i + 1, j)]
-            adjacent_cells = filter(Maze.cell_in_maze_bounds, adjacent_cells)
+            adjacent_cells = filter(self.cell_in_maze_bounds, adjacent_cells)
             possible_to_visit_cells = [
-                cell for cell in adjacent_cells if not cell.visited
+                cell
+                for cell in adjacent_cells
+                if not self._cells[cell[1]][cell[0]].visited
             ]
             if not possible_to_visit_cells:
-                self._cells[j][i].draw()
+                self._draw_cell(i, j)
+                self._animate()
                 return
             else:
                 chosen_direction = random.choice(possible_to_visit_cells)
