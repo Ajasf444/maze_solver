@@ -99,3 +99,8 @@ class Maze:
     def _cell_in_maze_bounds(self, indices):
         i, j = indices
         return i >= 0 and i < self.num_rows and j >= 0 and j < self.num_cols
+
+    def _reset_cells_visited(self):
+        for column in self._cells:
+            for cell in column:
+                cell.visited = False
