@@ -73,7 +73,7 @@ class Maze:
         while True:
             # neighboring cells ordered right, top, left, bottom
             adjacent_cells = [(i, j + 1), (i - 1, j), (i, j - 1), (i + 1, j)]
-            adjacent_cells = filter(self.cell_in_maze_bounds, adjacent_cells)
+            adjacent_cells = filter(self._cell_in_maze_bounds, adjacent_cells)
             possible_to_visit_cells = [
                 cell
                 for cell in adjacent_cells
@@ -96,6 +96,6 @@ class Maze:
                 next_i, next_j = chosen_direction
                 self._break_wall_r(next_i, next_j)
 
-    def cell_in_maze_bounds(self, indices):
+    def _cell_in_maze_bounds(self, indices):
         i, j = indices
         return i >= 0 and i < self.num_rows and j >= 0 and j < self.num_cols
