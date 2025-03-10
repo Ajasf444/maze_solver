@@ -2,6 +2,7 @@ import time
 import random
 
 from cell import Cell
+from directions import Directions
 from geometry import Point
 from window import Window
 
@@ -68,9 +69,9 @@ class Maze:
 
     def _break_wall_r(self, i, j):
         self._cells[j][i].visited = True
+        directions = Directions(i, j)
         while True:
             visited_cells = []
-            # TODO: get adjacent cells to the current cell
             # neighboring cells ordered right, top, left, bottom
             adjacent_cells = [(i, j + 1), (i - 1, j), (i, j - 1), (i + 1, j)]
             adjacent_cells = filter(Maze.cell_in_maze_bounds, adjacent_cells)
@@ -81,8 +82,17 @@ class Maze:
                 self._cells[j][i].draw()
                 return
             else:
-                # TODO: pick random direction
-                pass
+                chosen_direction = random.choice(possible_to_visit_cells)
+                # TODO: knock down walls and replace cases with Enum values
+                match chosen_direction:
+                    case directions.RIGHT:
+                        pass
+                    case directions.UP:
+                        pass
+                    case directions.LEFT:
+                        pass
+                    case directions.DOWN:
+                        pass
 
     def cell_in_maze_bounds(self, indices):
         i, j = indices
