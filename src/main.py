@@ -25,6 +25,7 @@ def main():
     maze = Maze(pA, 10, 10, 50, 50, win)
     maze._break_entrance_and_exit()
     maze._break_wall_r(0, 0)
+    maze._reset_cells_visited()
     win.wait_for_close()
 
 
