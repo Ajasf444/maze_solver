@@ -50,10 +50,10 @@ class Maze:
         for j in range(self.num_cols):
             for i in range(self.num_rows):
                 self._draw_cell(i, j)
-                self._animate()
 
     def _draw_cell(self, row, column):
         self._cells[column][row].draw()
+        self._animate()
 
     def _animate(self):
         if not self._win:
@@ -81,7 +81,6 @@ class Maze:
             ]
             if not possible_to_visit_cells:
                 self._draw_cell(i, j)
-                self._animate()
                 return
             else:
                 chosen_direction = random.choice(possible_to_visit_cells)
