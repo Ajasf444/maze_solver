@@ -13,7 +13,7 @@ class Cell:
         has_top_wall=True,
         has_bottom_wall=True,
         wall_color="black",
-        no_wall_color="white",
+        no_wall_color="gray",
     ):
         self.has_left_wall = has_left_wall
         self.has_right_wall = has_right_wall
@@ -43,16 +43,17 @@ class Cell:
             self._draw_wall(wall_line, is_solid)
 
     def _draw_wall(self, wall_line: Line, is_solid: bool):
-        wall_color = self.wall_color if is_solid else self.no_wall_color
-        return self._window.draw_line(wall_line, wall_color)
+        if not is_solid:
+            return
+        return self._window.draw_line(wall_line, self.wall_color)
 
     def draw_move(self, to_cell: "Cell", undo=False):
         from_center_point = self.get_center_point()
         to_center_point = to_cell.get_center_point()
         center_to_center_line = Line(from_center_point, to_center_point)
-        fill_color = "red"
+        fill_color = "green"
         if undo:
-            fill_color = "gray"
+            fill_color = "red4"
         self._window.draw_line(center_to_center_line, fill_color)
 
     def get_center_point(self):
