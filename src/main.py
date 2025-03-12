@@ -2,13 +2,21 @@ from cell import Cell
 from maze import Maze
 from geometry import Line, Point
 from window import Window
-# import sys
+import sys
+import random
 
 
 def main():
-    # sys.setrecursionlimit(20_000)
-    win = Window(800, 600)
-    pA, pB = Point(20, 20), Point(400, 300)
+    #    num_rows = 195
+    #    num_cols = 360
+    num_rows = 335
+    num_cols = 630
+    cell_size = 4
+    win_width = 10 + num_cols * cell_size
+    win_height = 10 + num_rows * cell_size
+    sys.setrecursionlimit(num_rows * num_cols)
+    win = Window(win_width, win_height)
+    pA, pB = Point(5, 5), Point(400, 300)
     #    line = Line(pA, pB)
     #    win.draw_line(line, "black")
     #    pC, pD = Point(400, 0), Point(0, 300)
@@ -22,10 +30,8 @@ def main():
     #    cellB.draw()
     #    cellA.draw_move(cellB)
 
-    maze = Maze(pA, 10, 10, 50, 50, win)
-    maze._break_entrance_and_exit()
-    maze._break_wall_r(0, 0)
-    maze._reset_cells_visited()
+    maze = Maze(pA, num_rows, num_cols, cell_size, cell_size, win)
+    maze.solve("depth_first_search")
     win.wait_for_close()
 
 

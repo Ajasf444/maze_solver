@@ -4,12 +4,13 @@ import time
 from cell import Cell
 from directions import Directions
 from geometry import Point
+from solution_strategies import SolutionStrategy
 from window import Window
 
 
 class Maze:
     SLEEP_TIME = 0.05
-    SOLVE_ANIMATION_TIME = SLEEP_TIME / 50
+    SOLVE_ANIMATION_TIME = SLEEP_TIME / 1000
     ANIMATION_TIME = SLEEP_TIME / 10
 
     def __init__(
@@ -80,7 +81,7 @@ class Maze:
         self._cells[j][i].visited = True
         directions = Directions(i, j)
         while True:
-            # neighboring cells ordered right, top, left, bottom
+            # neighboring cells ordered right, bottom, top, left
             possible_to_visit_cells = self._get_visitable_cells(i, j)
 
             if not possible_to_visit_cells:
@@ -114,17 +115,19 @@ class Maze:
             for cell in column:
                 cell.visited = False
 
-    def solve(self):
-        return self._solve_r(0, 0)
+    def solve(self, method):
+        match method:
+            case SolutionStrategy.DEPTH_FIRST_SEARCH:
+                return self._solve_dfs(0, 0)
 
-    def _solve_r(self, i, j):
+    def _solve_dfs(self, i, j):
         self._animate(Maze.SOLVE_ANIMATION_TIME)
         current_cell = self._cells[j][i]
         current_cell.visited = True
         if self._cells[-1][-1].visited is True:
             return True
         visitable_cells = self._get_visitable_cells(i, j)
-        #        random.shuffle(visitable_cells)
+        random.shuffle(visitable_cells)
         directions = Directions(i, j)
         for cell in visitable_cells:
             match cell:
@@ -143,12 +146,13 @@ class Maze:
             neighbor_cell = self._cells[j_n][i_n]
             if not has_wall and not neighbor_cell.visited:
                 current_cell.draw_move(neighbor_cell)
-                is_exit = self._solve_r(i_n, j_n)
+                is_exit = self._solve_dfs(i_n, j_n)
                 if is_exit:
                     return True
                 else:
                     # self._animate(Maze.SOLVE_ANIMATION_TIME)
                     current_cell.draw_move(neighbor_cell, undo=True)
+        return False
 
     def _get_neighboring_cells(self, i, j):
         adjacent_cells = [
