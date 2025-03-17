@@ -14,6 +14,8 @@ class Cell:
         has_bottom_wall=True,
         wall_color="black",
         no_wall_color="gray",
+        candidate_color="blue",
+        distance_to_exit=float("inf"),
     ):
         self.has_left_wall = has_left_wall
         self.has_right_wall = has_right_wall
