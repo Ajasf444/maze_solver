@@ -15,7 +15,6 @@ class Cell:
         wall_color="black",
         no_wall_color="gray",
         candidate_color="blue",
-        distance_to_exit=float("inf"),
     ):
         self.has_left_wall = has_left_wall
         self.has_right_wall = has_right_wall
@@ -27,6 +26,10 @@ class Cell:
         self.wall_color = wall_color
         self.no_wall_color = no_wall_color
         self.visited = False
+        self.distance_to_exit = float("inf")
+        self.parent = None
+        self.cost = 0
+        self._location = ((self._x1 + self._x2) / 2, (self._y1 + self._y2) / 2)
 
     def draw(self):
         if not self._window:
@@ -58,7 +61,17 @@ class Cell:
             fill_color = "red4"
         self._window.draw_line(center_to_center_line, fill_color)
 
+    def draw_move_2(self, to_cell: "Cell"):
+        from_center_point = self.get_center_point()
+        to_center_point = to_cell.get_center_point()
+        center_to_center_line = Line(from_center_point, to_center_point)
+        fill_color = "blue"
+        self._window.draw_line(center_to_center_line, fill_color)
+
     def get_center_point(self):
         center_x = (self._x1 + self._x2) / 2
         center_y = (self._y1 + self._y2) / 2
         return Point(center_x, center_y)
+
+    def _get_total_cost(self):
+        return self.cost + self.distance_to_exit
